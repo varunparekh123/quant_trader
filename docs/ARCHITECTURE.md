@@ -1,6 +1,8 @@
 # Architecture Notes
 
-Quant Trader should be designed as a research platform, not a single script.
+I want Quant Trader to be a research platform, not a single script. The main
+idea is to keep each part of the system separate enough that I can test it,
+replace it, and explain it.
 
 ## Current Flow
 
@@ -21,15 +23,16 @@ market data
 - Normalize column names.
 - Validate required fields.
 
-Future direction: add local caching, source adapters, and data quality checks.
+Next direction: I want to add local caching, source adapters, and data quality
+checks.
 
 `indicators.py`
 
 - Compute reusable technical indicators.
 - Keep indicator math separate from strategy logic.
 
-Future direction: add indicator metadata and avoid recomputing duplicate rolling
-windows.
+Next direction: I want to add indicator metadata and avoid recomputing duplicate
+rolling windows.
 
 `strategy.py`
 
@@ -37,16 +40,16 @@ windows.
 - Keep strategies explainable and deterministic.
 - Avoid portfolio accounting inside strategy code.
 
-Future direction: move each strategy into a class or registry if the strategy
-list becomes large.
+Next direction: if the strategy list gets large, I want to move strategies into
+a cleaner registry or class-based structure.
 
 `risk.py`
 
 - Convert raw strategy intent into position sizes.
 - Handle volatility targeting, exposure caps, and future drawdown controls.
 
-This layer is what separates "I like this signal" from "I know how much capital
-I want to risk."
+This layer is important because it separates "I like this signal" from "I know
+how much capital I want to risk."
 
 `backtester.py`
 
@@ -54,15 +57,16 @@ I want to risk."
   shares, and trade logs.
 - Avoid lookahead bias by using shifted executable positions.
 
-Future direction: add slippage, order types, rebalancing schedules, and richer
-fill simulation.
+Next direction: I want to add slippage, order types, rebalancing schedules, and
+richer fill simulation.
 
 `metrics.py`
 
 - Compute performance and risk metrics.
 - Keep reporting math independent from plotting and CLI code.
 
-Future direction: add benchmark-relative metrics, tail risk, and regime metrics.
+Next direction: I want to add benchmark-relative metrics, tail risk, and regime
+metrics.
 
 `optimizer.py`
 
@@ -70,8 +74,8 @@ Future direction: add benchmark-relative metrics, tail risk, and regime metrics.
 - Separate training performance from test performance.
 - Save ranked results and visual summaries.
 
-Future direction: generalize beyond moving averages into a reusable experiment
-runner.
+Next direction: I want to generalize this beyond moving averages into a reusable
+experiment runner.
 
 `walk_forward.py`
 
@@ -80,12 +84,12 @@ runner.
 
 ## Design Rules
 
-- Strategies output target positions. They do not execute trades.
-- The backtester decides executable positions and accounting.
-- Risk management can scale or cap positions before backtesting.
-- Metrics should be computed from returns, not from screenshots or manual math.
-- Every major experiment should save machine-readable outputs.
-- Any future paper-trading adapter should reuse the same signal and risk layers.
+- Strategies should output target positions. They should not execute trades.
+- I want the backtester to decide executable positions and accounting.
+- I want risk management to scale or cap positions before backtesting.
+- I want metrics to come from returns, not screenshots or manual math.
+- I want every major experiment to save machine-readable outputs.
+- I want any future paper-trading adapter to reuse the same signal and risk layers.
 
 ## Future Target Architecture
 
@@ -101,7 +105,7 @@ config
   -> report/dashboard
 ```
 
-## Interview Explanation
+## Why I Structured It This Way
 
 The important design choice is separation of concerns:
 
@@ -110,4 +114,5 @@ The important design choice is separation of concerns:
 - Execution/backtesting logic decides what could actually have been traded.
 - Metrics/reporting logic evaluates the outcome.
 
-That separation makes it easier to test, extend, and explain.
+That separation makes the project easier for me to test, extend, and explain as
+it grows.

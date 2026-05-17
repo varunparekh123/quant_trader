@@ -1,7 +1,8 @@
 # Roadmap
 
-This roadmap is organized around credibility. Each phase should make the project
-more realistic, explainable, and useful for long-term learning.
+I am organizing this roadmap around realism and long-term learning. I want each
+phase to make the project more useful as a markets lab, not just add features
+for the sake of adding features.
 
 ## Phase 1: Research Core
 
@@ -17,10 +18,10 @@ Status: in progress
 - Unit tests for backtest accounting
 - CLI entry points
 
-Success criteria:
+What I want from this phase:
 
-- A user can run a reproducible backtest from the terminal.
-- Results include benchmark comparison, risk metrics, trades, and saved outputs.
+- I can run a reproducible backtest from the terminal.
+- The output includes benchmark comparison, risk metrics, trades, and saved files.
 - Core portfolio math is covered by tests.
 
 ## Phase 2: Robustness And Validation
@@ -35,11 +36,11 @@ Status: started
 - Parameter sensitivity reporting
 - Regime-aware performance breakdowns
 
-Success criteria:
+What I want from this phase:
 
-- The project can show when a strategy works, when it fails, and whether it only
+- I can show when a strategy works, when it fails, and whether it only
   worked because of one overfit parameter choice.
-- Reports separate in-sample and out-of-sample performance.
+- I can separate in-sample and out-of-sample performance.
 
 ## Phase 3: Better Research Artifacts
 
@@ -52,11 +53,11 @@ Status: planned
 - Cleaner output folder structure
 - Benchmark comparison across SPY, QQQ, GLD, TLT, and sector ETFs
 
-Success criteria:
+What I want from this phase:
 
-- Each experiment produces an artifact that can be reviewed later without
+- Each experiment produces an artifact I can review later without
   rerunning code.
-- Results are easy to include in GitHub, LinkedIn, and interviews.
+- Results are easy to understand from the repo without needing a long explanation.
 
 ## Phase 4: Risk And Portfolio Construction
 
@@ -70,9 +71,9 @@ Status: planned
 - Correlation-aware diversification
 - Exposure and turnover constraints
 
-Success criteria:
+What I want from this phase:
 
-- The platform evaluates not just "which signal is good," but "how much risk
+- I can evaluate not just "which signal is good," but "how much risk
   should the portfolio take?"
 
 ## Phase 5: Paper Trading
@@ -86,9 +87,9 @@ Status: planned
 - Paper portfolio reconciliation
 - Alerts and daily summaries
 
-Success criteria:
+What I want from this phase:
 
-- The system can run safely without real-money execution.
+- I can run the system safely without real-money execution.
 - Every paper trade is traceable to a strategy signal and logged for review.
 
 ## Phase 6: Dashboard And Deployment
@@ -102,10 +103,9 @@ Status: planned
 - CI tests
 - Documentation site or polished GitHub README
 
-Success criteria:
+What I want from this phase:
 
-- The project can be demoed in an interview without digging through terminal
-  output.
+- I can demo the project cleanly without digging through terminal output.
 
 ## Phase 7: Advanced Research
 
@@ -119,7 +119,7 @@ Status: future
 - Slippage models
 - Broker-like order fill simulation
 
-Success criteria:
+What I want from this phase:
 
-- Advanced features are added only after the basic research engine is honest,
+- I add advanced features only after the basic research engine is honest,
   tested, and explainable.

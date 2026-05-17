@@ -1,37 +1,37 @@
 Quant Trader
 ============
 
-Quant Trader is my personal systematic trading research lab: a Python platform
-for testing ETF strategy ideas against historical market data with realistic
+I built Quant Trader as my personal markets lab: a Python research platform for
+testing ETF strategy ideas against historical market data. I wanted this to be
+more serious than a one-off moving-average script, so I added realistic
 execution assumptions, transaction costs, risk controls, performance analytics,
 and validation workflows.
 
-The goal is not to market this as a "profitable trading bot." The goal is to
-build a serious, explainable, and extensible research platform for learning
-markets, software engineering, risk management, and quantitative
-decision-making.
+I am not trying to present this as a "profitable trading bot." I am building it
+as a long-term engineering and finance project where I can test ideas, see where
+they fail, and keep improving the system as I learn more about markets and
+software design.
 
 Project docs
 ------------
 
 - [Vision](docs/VISION.md): long-term purpose and philosophy.
-- [Architecture](docs/ARCHITECTURE.md): how the system is organized.
-- [Roadmap](docs/ROADMAP.md): phased plan for making the platform stronger.
-- [Interview Guide](docs/INTERVIEW_GUIDE.md): resume and interview positioning.
+- [Architecture](docs/ARCHITECTURE.md): how I organized the system.
+- [Roadmap](docs/ROADMAP.md): what I want to build next.
 
-What it does
+What I built
 ------------
 
-- Downloads historical OHLCV data with `yfinance`.
-- Builds technical indicators such as moving averages, RSI, and ATR.
-- Generates long/cash strategy signals from reusable strategy modes.
-- Shifts positions by one trading day to avoid lookahead bias.
-- Applies transaction costs when the executable position changes.
-- Supports volatility-targeted position sizing instead of only all-in/all-out trades.
-- Reports total return, annualized return, volatility, Sharpe, Sortino, Calmar,
+- I download historical OHLCV data with `yfinance`.
+- I calculate indicators like moving averages, RSI, and ATR.
+- I generate strategy signals from reusable strategy modes.
+- I shift positions by one trading day to reduce lookahead bias.
+- I apply transaction costs when the executable position changes.
+- I added volatility-targeted sizing so strategies are not only all-in/all-out.
+- I report total return, annualized return, volatility, Sharpe, Sortino, Calmar,
   max drawdown, win rate, and alpha versus buy-and-hold.
-- Saves equity curves, trade logs, and backtest plots.
-- Supports multi-strategy comparison, moving-average parameter optimization, and
+- I save equity curves, trade logs, and backtest plots.
+- I support multi-strategy comparison, moving-average parameter optimization, and
   walk-forward validation.
 
 Quick start
@@ -42,7 +42,7 @@ pip install -r requirements.txt
 python src/main.py --symbol QQQ --strategy trend_ma200 --start 2018-01-01 --end 2026-01-01
 ```
 
-Outputs are written to `outputs/`:
+Each run writes outputs to `outputs/`:
 
 - `{symbol}_{strategy}_equity.csv`
 - `{symbol}_{strategy}_trades.csv`
@@ -74,8 +74,8 @@ python src/walk_forward.py
 python -m unittest discover -s tests
 ```
 
-Built-in strategies
--------------------
+Strategies
+----------
 
 - `trend_ma200`: long when price is above the 200-day moving average.
 - `ma_cross_20_50`: long when the 20-day moving average is above the 50-day moving average.
@@ -83,40 +83,23 @@ Built-in strategies
 - `trend_pullback_rsi`: long-term trend filter with RSI pullback entries.
 - `rsi_mean_reversion`: buy oversold RSI and sell overbought RSI.
 
-Resume talking points
----------------------
-
-- Built a modular Python backtesting engine for ETF trading strategies using
-  pandas, NumPy, matplotlib, and yfinance.
-- Implemented technical indicators, signal generation, transaction-cost-aware
-  backtesting, trade logs, equity curve visualization, and risk-adjusted metrics.
-- Reduced lookahead bias by separating strategy signals from executable
-  positions through one-day position shifting.
-- Built a parameter optimizer for moving-average strategies using train/test
-  validation to compare in-sample performance against out-of-sample robustness.
-- Added volatility-targeted position sizing so the strategy can scale exposure
-  based on realized market risk instead of using only binary buy/sell exposure.
-- Added walk-forward validation to evaluate strategy robustness across rolling
-  out-of-sample windows.
-- Added unit tests for core portfolio accounting and transaction cost behavior.
-
 How this differs from a basic MA20/MA50 project
 -----------------------------------------------
 
-A simple MA20/MA50 project usually demonstrates one fixed crossover strategy.
-This project is designed as a research workflow:
+I already had experience with a simpler MA20/MA50-style project. For this one,
+I wanted to go further and make the project feel more like a research workflow:
 
-- It tests multiple strategies, not one hard-coded crossover.
-- It searches many moving-average parameter pairs and ranks them by out-of-sample
+- I test multiple strategies instead of one hard-coded crossover.
+- I search many moving-average parameter pairs and rank them by out-of-sample
   performance.
-- It models transaction costs and avoids same-day lookahead bias.
-- It supports fractional allocations through volatility targeting.
-- It produces reusable CSV artifacts, trade logs, plots, and testable modules.
-- It includes walk-forward validation and unit tests, which makes the work easier
-  to defend in interviews.
+- I model transaction costs and avoid same-day lookahead bias.
+- I support fractional allocations through volatility targeting.
+- I produce reusable CSV artifacts, trade logs, plots, and testable modules.
+- I include walk-forward validation and unit tests so the results are easier to
+  trust and explain.
 
 Important note
 --------------
 
-This project is for research and education. It does not place live trades and
-should not be treated as financial advice.
+I built this project for research and education. It does not place live trades,
+and it should not be treated as financial advice.
