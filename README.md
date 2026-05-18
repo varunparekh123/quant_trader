@@ -19,6 +19,26 @@ Project docs
 - [Architecture](docs/ARCHITECTURE.md): how I organized the system.
 - [Roadmap](docs/ROADMAP.md): what I want to build next.
 
+Interactive dashboard
+---------------------
+
+I added a Streamlit dashboard so I can use the project as an interactive learning
+tool instead of only reading code or terminal output.
+
+```bash
+pip install -r requirements.txt
+streamlit run app.py
+```
+
+The dashboard lets me:
+
+- Change ticker, date range, strategy, starting capital, and transaction costs.
+- Turn volatility targeting on or off.
+- Replay the backtest through time with a slider.
+- See the bot's current allocation, next target, cash, shares, and latest trades.
+- Read short notes explaining why the strategy is buying, selling, or holding.
+- Compare the strategy equity curve against buy-and-hold.
+
 What I built
 ------------
 
